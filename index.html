@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaimae Ghazi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday-professional: a consultant's site, precise and confident
+   IDEA an SAP solution architecture sheet: layered stack where every project plugs into the layers it uses
+   PICTURE the stack itself, large: Fiori, OData V4, RAP/CDS, ABAP, S/4HANA, with BTP/CAP and CPI columns; click a layer to filter projects
+   COLOUR cobalt #1240e0 title field, white, black, pale #eef2ff zones; night #0a0d18
+   TYPE Space Grotesk 600 + Inter
+   LAYOUT cobalt band: name + summary top, stack picture full width beneath; then projects grid, experience, certifications, contact. Phone: stacked */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0a0d18);--ink:light-dark(#0b0d14,#e8ebf5);--mute:light-dark(#4a5168,#a3abc4);--zone:light-dark(#eef2ff,#131a33);--line:light-dark(#d5dcf2,#26304f);--co:#1240e0;--co2:light-dark(#1240e0,#7d9bff);--hot:#ff5a36}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;line-height:1.05;margin:0}
+a{color:var(--co2)}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,72px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+nav{position:sticky;top:0;z-index:5;background:var(--co);color:#fff;padding:10px max(5vw,16px)}
+nav .wrap{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+nav b{font-family:"Space Grotesk";font-size:17px;margin-right:auto}
+nav a{color:#fff;text-decoration:none;font-size:15px;opacity:.85;padding:6px 0}
+nav a:hover,nav a:focus-visible{opacity:1;text-decoration:underline}
+.hero{background:var(--co);color:#fff;padding-top:clamp(24px,4vw,48px)}
+.top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 48px;align-items:end}
+.hero h1{font-size:clamp(40px,6vw,68px)}
+.role{font-size:clamp(18px,2vw,22px);margin:12px 0 0;font-family:"Space Grotesk";font-weight:500;color:#dfe6ff}
+.lead{margin:0;color:#e9edff;max-width:60ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:6px;font-weight:600;text-decoration:none;font-size:15px}
+.btn.w{background:#fff;color:var(--co)}
+.btn.o{border:1.5px solid #fff;color:#fff}
+.btn:focus-visible,.layer:focus-visible,.chip:focus-visible{outline:3px solid var(--hot);outline-offset:2px}
+.stackbox{margin-top:clamp(24px,3vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3.2fr) minmax(0,1fr);gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:14px}
+.col{display:flex;flex-direction:column;gap:10px}
+.layer{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;min-height:44px;transition:background .2s,transform .2s}
+.layer:hover{background:rgba(255,255,255,.22)}
+.layer[aria-pressed=true]{background:#fff;color:var(--co);transform:translateY(-2px)}
+.layer b{font-family:"Space Grotesk";font-size:17px}
+.layer small{font-size:13px;opacity:.85;text-align:right}
+.side .layer{flex:1;flex-direction:column;justify-content:center;text-align:center}
+.side .layer small{text-align:center}
+.n{display:inline-block;min-width:24px;padding:1px 7px;border-radius:10px;background:var(--hot);color:#fff;font-size:13px;font-weight:600;text-align:center}
+.cap{grid-column:1/-1;margin:4px 2px 0;font-size:13px;color:#dfe6ff}
+.sec h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:8px}
+.sub{color:var(--mute);margin:0 0 24px;max-width:70ch}
+.filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{all:unset;cursor:pointer;padding:8px 14px;min-height:28px;border-radius:20px;border:1px solid var(--line);font-size:14px;font-weight:500}
+.chip[aria-pressed=true]{background:var(--co);border-color:var(--co);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--zone);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:20px}
+.card .ctx{font-size:13px;color:var(--co2);font-weight:600}
+.card p{margin:0;color:var(--mute);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tags span{font-size:13px;padding:2px 9px;border-radius:4px;background:var(--bg);border:1px solid var(--line)}
+.empty{color:var(--mute)}
+.zone{background:var(--zone)}
+.two{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px}
+.job{border-left:3px solid var(--co);padding:2px 0 2px 18px;margin-bottom:28px}
+.job h3{font-size:21px}
+.job .when{color:var(--mute);font-size:14px;margin:4px 0 8px}
+.job ul{margin:0;padding-left:18px}
+.job li{margin:4px 0}
+.certs{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.certs li{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.certs svg{flex:none}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px 32px}
+.skills h3{font-size:17px;margin-bottom:6px}
+.skills p{margin:0;color:var(--mute);font-size:15px}
+.contact{background:var(--co);color:#fff}
+.contact h2{font-size:clamp(30px,4vw,48px)}
+.contact p{color:#e9edff}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:20px}
+.links a{display:block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:14px 16px;color:#fff;text-decoration:none;overflow-wrap:anywhere}
+.links a span{display:block;font-size:13px;opacity:.8}
+footer{padding:18px max(5vw,16px);font-size:13px;color:var(--mute)}
+@media(max-width:820px){.top,.two{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.stackbox{grid-template-columns:minmax(0,1fr)}.side{flex-direction:row}.side .layer{flex:1}nav a{font-size:14px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Chaimae Ghazi</b><a href="#projets">Projets</a><a href="#parcours">Parcours</a><a href="#competences">Compétences</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero band">
+ <div class="wrap">
+  <div class="top">
+   <div>
+    <h1>Chaimae Ghazi</h1>
+    <p class="role">Consultante technique SAP · ABAP, RAP, Fiori, BTP, CPI</p>
+   </div>
+   <div>
+    <p class="lead">2 ans de développement SAP sur S/4HANA Public Cloud et On-Premise : applications RAP/Fiori de bout en bout, extensions, intégrations CPI et applications CAP sur BTP. Basée à Kénitra, Maroc.</p>
+    <div class="cta"><a class="btn w" href="#projets">Voir les projets</a><a class="btn o" href="#contact">Me contacter</a></div>
+   </div>
+  </div>
+  <div class="stackbox" id="stack">
+   <div class="col side"><button class="layer" data-k="btp" aria-pressed="false"><b>SAP BTP</b><small>CAP Node.js · Cloud Foundry</small><span class="n"></span></button></div>
+   <div class="col">
+    <button class="layer" data-k="ui" aria-pressed="false"><b>Fiori / SAPUI5</b><small>Fiori Elements · freestyle</small><span class="n"></span></button>
+    <button class="layer" data-k="odata" aria-pressed="false"><b>OData V4</b><small>services, actions</small><span class="n"></span></button>
+    <button class="layer" data-k="rap" aria-pressed="false"><b>RAP · CDS</b><small>behavior, draft, validations</small><span class="n"></span></button>
+    <button class="layer" data-k="abap" aria-pressed="false"><b>ABAP · ABAP OO · ABAP Cloud</b><small>BAPI, BAdI, ALV, jobs</small><span class="n"></span></button>
+    <button class="layer" data-k="s4" aria-pressed="false"><b>S/4HANA</b><small>Public Cloud · On-Premise · MM, SD, PP, PM, FI</small><span class="n"></span></button>
+   </div>
+   <div class="col side"><button class="layer" data-k="cpi" aria-pressed="false"><b>SAP CPI</b><small>iFlows · tiers</small><span class="n"></span></button></div>
+   <p class="cap">Cliquez sur une couche pour voir les projets qui l'utilisent.</p>
+  </div>
+ </div>
+</header>
+
+<section class="band sec" id="projets">
+ <div class="wrap">
+  <h2>Projets</h2>
+  <p class="sub">Une sélection de réalisations, de la base de données jusqu'à l'interface. Les noms des clients ne sont pas cités.</p>
+  <div class="filter" id="filter"></div>
+  <div class="grid" id="grid"></div>
+ </div>
+</section>
+
+<section class="band zone sec" id="parcours">
+ <div class="wrap two">
+  <div>
+   <h2>Parcours</h2>
+   <p class="sub">Développement SAP depuis 2024, après une formation d'ingénieure en génie informatique.</p>
+   <div class="job"><h3>Consultante technique SAP · AtlionTech</h3><p class="when">Kénitra, Maroc · septembre 2024 à aujourd'hui</p>
+    <ul><li>Applications ABAP Cloud / RAP et Fiori sur S/4HANA Public Cloud (agroalimentaire, industrie)</li><li>Plateforme RH cloud-native avec CAP Node.js, SAPUI5 et BTP Cloud Foundry</li><li>Intégrations CPI pour les ventes (SD) et la production (PP)</li><li>BAdIs SD/MM, jobs batch, ateliers Fit-to-Standard</li></ul></div>
+   <div class="job"><h3>Mission S/4HANA On-Premise · secteur public</h3><p class="when">Achats publics (MM)</p>
+    <ul><li>Évolution d'un utilitaire de duplication de contrats d'achat père/fils</li><li>BAPI, ALV éditables, cahier de tests et support à la recette</li></ul></div>
+   <div class="job"><h3>Full-Stack Java · stage · Capgemini Engineering</h3><p class="when">Casablanca · 2023</p>
+    <ul><li>Surveillance temps réel : Spring Boot, Angular, WebSocket, Kafka, Spring Security</li></ul></div>
+   <div class="job"><h3>Software Engineer · stage · Diwansoft</h3><p class="when">Tanger · 2022</p>
+    <ul><li>Gestion des données territoriales (eau potable) : WebDev, WinDev, PostgreSQL multi-bases</li></ul></div>
+   <div class="job"><h3>Ingénieure d'État en génie informatique · ENSA Tanger</h3><p class="when">2018 à 2023</p></div>
+  </div>
+  <div>
+   <h2 style="font-size:28px;margin-bottom:16px">Certifications</h2>
+   <ul class="certs" id="certs"></ul>
+  </div>
+ </div>
+</section>
+
+<section class="band sec" id="competences">
+ <div class="wrap">
+  <h2>Compétences</h2>
+  <p class="sub">Les outils utilisés sur les projets ci-dessus.</p>
+  <div class="skills">
+   <div><h3>SAP Core</h3><p>ABAP, ABAP OO, ABAP on HANA, ABAP Cloud, AMDP, BAPI, BAdI, ALV, SmartForms</p></div>
+   <div><h3>SAP moderne</h3><p>RAP, CDS, OData V4, Fiori Elements, SAPUI5, CAP Node.js, SAP BTP, Business Application Studio</p></div>
+   <div><h3>Intégration</h3><p>SAP CPI (Integration Suite), iFlows, échanges avec des systèmes tiers, génération XML</p></div>
+   <div><h3>Modules</h3><p>MM (contrats, commandes), SD, PP, PM (ordres de maintenance), FI (déclarations TVA)</p></div>
+   <div><h3>Hors SAP</h3><p>Java, Spring Boot, Angular, SQL, PostgreSQL, Git, Docker, Kafka</p></div>
+   <div><h3>Langues</h3><p>Arabe (langue maternelle), français (courant), anglais (B2)</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="band contact" id="contact">
+ <div class="wrap">
+  <h2>Travaillons ensemble</h2>
+  <p>Ouverte aux missions ABAP Cloud, RAP/Fiori, BTP et CPI.</p>
+  <div class="links">
+   <a href="mailto:ghazichaymae@gmail.com"><span>Email</span>ghazichaymae@gmail.com</a>
+   <a href="https://www.linkedin.com/in/chaimae-ghazi"><span>LinkedIn</span>linkedin.com/in/chaimae-ghazi</a>
+   <a href="https://github.com/chaimae1433"><span>GitHub</span>github.com/chaimae1433</a>
+  </div>
+ </div>
+</section>
+<footer><div class="wrap">© 2026 Chaimae Ghazi · Kénitra, Maroc</div></footer>
+
+<script>
+{
+const P=[
+ {t:"Dossiers d'import (DUM)",c:"S/4HANA Public Cloud · agroalimentaire",d:"Gestion des dossiers d'importation : répartition des frais de transport sur les postes de commande d'achat et suivi des livraisons entrantes.",k:["ui","odata","rap","abap","s4"],g:["RAP","CDS","Fiori/UI5","MM"]},
+ {t:"Zone de rétention",c:"ABAP Cloud · industrie",d:"Prélèvement systématique d'échantillons par shift et traçabilité, avec une application Fiori et un job ABAP planifié.",k:["ui","odata","rap","abap","s4"],g:["RAP","SAPUI5","Job ABAP"]},
+ {t:"Responsables d'ordres de maintenance",c:"S/4HANA Public Cloud · PM",d:"Affectation d'un responsable aux ordres de maintenance via l'API I_MaintenanceOrderTP, avec envoi automatique d'emails HTML.",k:["ui","odata","rap","abap","s4"],g:["RAP","Fiori/UI5","PM","Email"]},
+ {t:"Gestion des échantillons",c:"RAP · Fiori Elements",d:"Application complète de gestion des échantillons, avec création d'une commande client à l'approbation.",k:["ui","odata","rap","abap","s4"],g:["RAP","Fiori Elements","SD"]},
+ {t:"Déclaration TVA (DGI)",c:"Finance · conformité",d:"Services ABAP Cloud et interface Fiori qui génèrent automatiquement les fichiers XML réglementaires de la déclaration de TVA marocaine.",k:["ui","odata","rap","abap","s4"],g:["CDS","RAP","XML","FI"]},
+ {t:"Jobs d'intégration financière",c:"ABAP Cloud · batch",d:"Jobs planifiés qui chargent automatiquement des données externes : taux de change, référentiels tiers.",k:["abap","s4"],g:["ABAP Cloud","Application Jobs"]},
+ {t:"Plateforme RH cloud-native",c:"SAP BTP · Cloud Foundry",d:"Documents, absences, congés, formations et compétences, avec un backend CAP Node.js et une interface SAPUI5 freestyle.",k:["btp","ui","odata"],g:["CAP","Node.js","SAPUI5","BTP"]},
+ {t:"Intégration des ventes",c:"SAP CPI · SD",d:"Intégration entre S/4HANA Public Cloud et une solution tierce de vente terrain via SAP Integration Suite.",k:["cpi","s4"],g:["CPI","iFlow","SD"]},
+ {t:"Intégration production",c:"SAP CPI · PP",d:"Participation au développement d'un iFlow entre un système tiers et S/4HANA pour la production.",k:["cpi","s4"],g:["CPI","iFlow","PP"]},
+ {t:"Contrats d'achat père/fils",c:"S/4HANA On-Premise · secteur public",d:"Un contrat fils par période, droits de tirage par direction, blocage des postes du contrat père, coexistence de l'ancienne et de la nouvelle modélisation.",k:["abap","s4"],g:["BAPI","ALV","ABAP OO","MM"]},
+ {t:"Extensions SD et MM",c:"BAdI · Fit-to-Standard",d:"Analyse des besoins métier et implémentation de BAdIs dans les modules SD et MM.",k:["abap","s4"],g:["BAdI","SD","MM"]}
+];
+const L={btp:"SAP BTP",ui:"Fiori / SAPUI5",odata:"OData V4",rap:"RAP · CDS",abap:"ABAP",s4:"S/4HANA",cpi:"SAP CPI"};
+const C=["SAP Certified – Solution Architect – SAP BTP","SAP Certified – Integration Developer","SAP Certified – Back-End Developer – SAP Cloud Application Programming Model (CAP)","SAP Certified Associate – Back-End Developer – ABAP Cloud","Oracle Certified Professional – Java SE 17 Developer"];
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const grid=document.getElementById("grid"),filter=document.getElementById("filter");
+let cur="all";
+const draw=()=>{
+ const list=cur==="all"?P:P.filter(p=>p.k.includes(cur));
+ grid.innerHTML=list.length?list.map(p=>`<article class="card"><span class="ctx">${esc(p.c)}</span><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><div class="tags">${p.g.map(x=>`<span>${esc(x)}</span>`).join("")}</div></article>`).join(""):`<p class="empty">Aucun projet pour cette couche.</p>`;
+ filter.innerHTML=[["all","Tous"],...Object.entries(L)].map(([k,v])=>`<button class="chip" data-k="${k}" aria-pressed="${k===cur}">${v} <small>(${k==="all"?P.length:P.filter(p=>p.k.includes(k)).length})</small></button>`).join("");
+ document.querySelectorAll(".layer").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===cur));
+};
+const pick=k=>{cur=cur===k?"all":k;draw()};
+document.querySelectorAll(".layer").forEach(b=>{
+ b.querySelector(".n").textContent=P.filter(p=>p.k.includes(b.dataset.k)).length;
+ b.addEventListener("click",()=>{pick(b.dataset.k);document.getElementById("projets").scrollIntoView()});
+});
+filter.addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){cur=b.dataset.k;draw()}});
+document.getElementById("certs").innerHTML=C.map(c=>`<li><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="12" r="9" fill="#1240e0"/><path d="M9.5 12l3 3 6-6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M9 20l-2 7 7-3 7 3-2-7" fill="#ff5a36"/></svg><span>${esc(c)}</span></li>`).join("");
+draw();
+}
+</script>
+</body>
+</html>
